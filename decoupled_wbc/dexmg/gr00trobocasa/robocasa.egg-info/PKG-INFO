@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: robocasa
+Version: 0.2.0
+Summary: Gr00t RoboCasa for loco-manipulation
+Requires-Python: >=3
+Requires-Dist: numpy==1.26.4
+Requires-Dist: numba==0.61.0
+Requires-Dist: scipy>=1.2.3
+Requires-Dist: mujoco==3.2.6
+Requires-Dist: pygame
+Requires-Dist: Pillow
+Requires-Dist: opencv-python
+Requires-Dist: pyyaml
+Requires-Dist: pynput
+Requires-Dist: tqdm
+Requires-Dist: termcolor
+Requires-Dist: imageio
+Requires-Dist: h5py
+Requires-Dist: lxml
+Requires-Dist: hidapi
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
