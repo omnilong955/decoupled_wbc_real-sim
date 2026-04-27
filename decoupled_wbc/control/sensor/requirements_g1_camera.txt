@@ -1,0 +1,22 @@
+# Minimal Python dependencies for the G1 onboard RealSense camera publisher:
+#   python decoupled_wbc/control/sensor/composed_camera.py --ego_view_camera realsense --port 5555 --fps 20
+#
+# Notes for Jetson/G1:
+# - Prefer creating the venv with --system-site-packages and installing OpenCV via apt:
+#     sudo apt install -y python3-opencv
+#   If you do not use system OpenCV, uncomment opencv-python-headless below.
+# - On aarch64 Jetson, pyrealsense2 often must come from a librealsense build with
+#   Python bindings, not from pip. See the deployment notes in the assistant response.
+
+numpy==1.26.4
+gymnasium
+pyzmq
+msgpack
+msgpack-numpy
+tyro
+
+# Use this only if cv2 is not provided by apt/system packages.
+# opencv-python-headless
+
+# Use this only on platforms where pip has a compatible wheel.
+# pyrealsense2
