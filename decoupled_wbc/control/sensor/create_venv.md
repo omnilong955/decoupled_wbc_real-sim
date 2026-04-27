@@ -1,24 +1,31 @@
-cd ~/workspace/workspace_decoupled_WBC/GR00T-WholeBodyControl
+# create venv
+cd ~
+source ioenv_cli/ioenv.sh
+ioenv run onboard
 
 sudo apt update
 sudo apt install -y python3-venv python3-pip python3-opencv
 
+cd /root/workspace/decoupled_wbc_real-sim/decoupled_wbc/
 python3 -m venv --system-site-packages .venv
 source .venv/bin/activate
 
-python -m pip install -U pip
-python -m pip install -r requirements_g1_camera.txt
+python3 -m pip install -U pip
+python3 -m pip install -r requirements_g1_camera.txt
+python3 -m pip install pyrealsense2
 
-export PYTHONPATH=$PWD:$PYTHONPATH
 
 
-# test
-python - <<'PY'
-import cv2, numpy, gymnasium, zmq, msgpack, msgpack_numpy, tyro
-print("basic camera deps ok")
-try:
-    import pyrealsense2 as rs
-    print("pyrealsense2 ok", getattr(rs, "__version__", ""))
-except Exception as e:
-    print("pyrealsense2 missing:", e)
-PY
+# 运行
+cd ~
+source ioenv_cli/ioenv.sh
+ioenv run onboard
+
+cd /root/workspace/decoupled_wbc_real-sim
+source /root/workspace/decoupled_wbc_real-sim/decoupled_wbc/.venv/bin/activate
+export PYTHONPATH=/root/workspace/decoupled_wbc_real-sim:$PYTHONPATH
+
+python3 decoupled_wbc/control/sensor/composed_camera.py \
+  --ego_view_camera realsense \
+  --port 5555 \
+  --fps 20
